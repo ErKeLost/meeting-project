@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
@@ -172,7 +173,7 @@ __decorate([
 ], UserController.prototype, "configService", void 0);
 __decorate([
     (0, common_1.Inject)(redis_service_1.RedisService),
-    __metadata("design:type", redis_service_1.RedisService)
+    __metadata("design:type", typeof (_a = typeof redis_service_1.RedisService !== "undefined" && redis_service_1.RedisService) === "function" ? _a : Object)
 ], UserController.prototype, "redisService", void 0);
 __decorate([
     (0, common_1.Inject)(email_service_1.EmailService),
