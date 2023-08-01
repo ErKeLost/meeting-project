@@ -2,7 +2,14 @@
 /dist
 /node_modules
 */**/node_modules
+*/**/dist
+*/**/build
+*/**/coverage
+*/**/coverage-
 
+dist
+
+*/dist
 
 # volumes
 redis

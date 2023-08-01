@@ -6,7 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { Role, User, Permission } from './user/entities';
-import { RedisModule } from './redis/redis.module';
+import { RedisModule } from './redis-server/redis.module';
 import { EmailModule } from './email/email.module';
 import { LoginGuard } from './login.guard';
 import { APP_GUARD } from '@nestjs/core';

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailController = void 0;
 const common_1 = require("@nestjs/common");
 const email_service_1 = require("./email.service");
-const redis_service_1 = require("../redis/redis.service");
+const redis_service_1 = require("../redis-server/redis.service");
 let EmailController = class EmailController {
     async captcha(address) {
         const code = Math.random().toString().slice(2, 8);

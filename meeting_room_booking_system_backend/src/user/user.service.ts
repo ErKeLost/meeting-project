@@ -5,7 +5,7 @@ import { Permission, Role, User } from './entities';
 import { Repository } from 'typeorm';
 import { RegisterUserDto } from './dto/registerUser.dto';
 import * as bcrypt from 'bcryptjs';
-import { RedisService } from '../redis/redis.service';
+import { RedisService } from '../redis-server/redis.service';
 import { Inject } from '@nestjs/common';
 import { HttpException } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common';

@@ -15,7 +15,7 @@ import { JwtService } from '@nestjs/jwt';
 import { RequireLogin, UserInfo } from '../custom.decorator';
 import { UserDetailVo } from './vo/user-info.vo';
 import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
-import { RedisService } from '../redis/redis.service';
+import { RedisService } from '../redis-server/redis.service';
 import { EmailService } from '../email/email.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 
