@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var UserService_1;
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
@@ -215,7 +216,7 @@ __decorate([
 ], UserService.prototype, "permissionRepository", void 0);
 __decorate([
     (0, common_3.Inject)(redis_service_1.RedisService),
-    __metadata("design:type", redis_service_1.RedisService)
+    __metadata("design:type", typeof (_a = typeof redis_service_1.RedisService !== "undefined" && redis_service_1.RedisService) === "function" ? _a : Object)
 ], UserService.prototype, "redisService", void 0);
 UserService = UserService_1 = __decorate([
     (0, common_2.Injectable)()
