@@ -26,6 +26,7 @@ const redis_service_1 = require("../redis-server/redis.service");
 const email_service_1 = require("../email/email.service");
 const update_user_dto_1 = require("./dto/update-user.dto");
 const parseInt_1 = require("../utils/parseInt");
+const swagger_1 = require("@nestjs/swagger");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -286,6 +287,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "list", null);
 UserController = __decorate([
+    (0, swagger_1.ApiTags)('用户管理模块'),
     (0, common_1.Controller)('user'),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);

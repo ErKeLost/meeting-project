@@ -22,7 +22,9 @@ import { RedisService } from '../redis-server/redis.service';
 import { EmailService } from '../email/email.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { generateParseIntPipe } from '../utils/parseInt';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('用户管理模块')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
