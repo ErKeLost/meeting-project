@@ -28,4 +28,9 @@ export declare class UserController {
     updatePasswordCaptcha(address: string): Promise<string>;
     update(userId: number, updateUserDto: UpdateUserDto): Promise<string>;
     updateCaptcha(address: string): Promise<string>;
+    freeze(userId: number): Promise<string>;
+    list(pageNo: number, pageSize: number, username: string, nickName: string, email: string): Promise<{
+        users: import("./entities").User[];
+        totalCount: number;
+    }>;
 }

@@ -25,6 +25,7 @@ const update_user_password_dto_1 = require("./dto/update-user-password.dto");
 const redis_service_1 = require("../redis-server/redis.service");
 const email_service_1 = require("../email/email.service");
 const update_user_dto_1 = require("./dto/update-user.dto");
+const parseInt_1 = require("../utils/parseInt");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -161,6 +162,13 @@ let UserController = class UserController {
         });
         return '发送成功';
     }
+    async freeze(userId) {
+        await this.userService.freezeUserById(userId);
+        return 'success';
+    }
+    async list(pageNo, pageSize, username, nickName, email) {
+        return await this.userService.findUsers(username, nickName, email, pageNo, pageSize);
+    }
 };
 __decorate([
     (0, common_1.Inject)(jwt_1.JwtService),
@@ -259,6 +267,24 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "updateCaptcha", null);
+__decorate([
+    (0, common_1.Get)('freeze'),
+    __param(0, (0, common_1.Query)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "freeze", null);
+__decorate([
+    (0, common_1.Get)('list'),
+    __param(0, (0, common_1.Query)('pageNo', new common_1.DefaultValuePipe(0), (0, parseInt_1.generateParseIntPipe)('pageNo'))),
+    __param(1, (0, common_1.Query)('pageSize', new common_1.DefaultValuePipe(0), (0, parseInt_1.generateParseIntPipe)('pageSize'))),
+    __param(2, (0, common_1.Query)('username')),
+    __param(3, (0, common_1.Query)('nickName')),
+    __param(4, (0, common_1.Query)('email')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number, String, String, String]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "list", null);
 UserController = __decorate([
     (0, common_1.Controller)('user'),
     __metadata("design:paramtypes", [user_service_1.UserService])

@@ -23,4 +23,13 @@ export declare class UserService {
     findUserDetailById(userId: any): Promise<User>;
     updatePassword(userId: number, passwordDto: UpdateUserPasswordDto): Promise<string>;
     update(userId: number, updateUserDto: UpdateUserDto): Promise<string>;
+    freezeUserById(id: number): Promise<void>;
+    findUsersByPage(pageNo: number, pageSize: number): Promise<{
+        users: User[];
+        totalCount: number;
+    }>;
+    findUsers(username: string, nickName: string, email: string, pageNo: number, pageSize: number): Promise<{
+        users: User[];
+        totalCount: number;
+    }>;
 }
