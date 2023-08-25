@@ -20,7 +20,7 @@ import { ConfigService } from '@nestjs/config';
         await client.connect();
         return client;
       },
-      inject: [ConfigService]
+      inject: [ConfigService],
     },
   ],
   exports: [RedisService],
