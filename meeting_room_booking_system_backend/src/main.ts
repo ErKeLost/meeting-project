@@ -26,6 +26,7 @@ async function bootstrap() {
   SwaggerModule.setup('api-doc', app, document);
 
   const configService = app.get(ConfigService);
-  await app.listen(configService.get('nest_server_port'));
+  // await app.listen(configService.get('nest_server_port'));
+  await app.listen(3000);
 }
 bootstrap();
