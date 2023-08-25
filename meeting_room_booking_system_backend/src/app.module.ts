@@ -33,11 +33,16 @@ import { PermissionGuard } from './permission.guard';
       useFactory(configService: ConfigService) {
         return {
           type: 'mysql',
-          host: configService.get('mysql_server_host'),
-          port: configService.get('mysql_server_port'),
-          username: configService.get('mysql_server_username'),
-          password: configService.get('mysql_server_password'),
-          database: configService.get('mysql_server_database'),
+          // host: configService.get('mysql_server_host'),
+          host: '192.168.104.203',
+          port: 3300,
+          username: 'root',
+          password: 'erkelost',
+          database: 'meeting_room_booking_system',
+          // port: configService.get('mysql_server_port'),
+          // username: configService.get('mysql_server_username'),
+          // password: configService.get('mysql_server_password'),
+          // database: configService.get('mysql_server_database'),
           synchronize: true,
           logging: true,
           entities: [User, Role, Permission],
@@ -64,7 +69,7 @@ import { PermissionGuard } from './permission.guard';
     {
       provide: APP_GUARD,
       useClass: PermissionGuard,
-    }
+    },
   ],
 })
 export class AppModule {}
