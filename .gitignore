@@ -10,7 +10,7 @@
 meeting_room_booking_system_backend/dist
 
 */dist
-
+**/*/dist
 # volumes
 redis
 volumes
