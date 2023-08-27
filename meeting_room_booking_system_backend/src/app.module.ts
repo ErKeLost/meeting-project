@@ -33,8 +33,8 @@ import { PermissionGuard } from './permission.guard';
       useFactory(configService: ConfigService) {
         return {
           type: 'mysql',
-          // host: configService.get('mysql_server_host'),
-          host: '192.168.104.203',
+          host: configService.get('mysql_server_host'),
+          // host: '192.168.104.203',
           port: 3300,
           username: 'root',
           password: 'erkelost',

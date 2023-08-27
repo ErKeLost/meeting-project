@@ -1,3 +1,5 @@
+// declare const module: any;
+
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -28,5 +30,9 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   // await app.listen(configService.get('nest_server_port'));
   await app.listen(3000);
+  // if (module.hot) {
+	// 	module.hot.accept();
+	// 	module.hot.dispose(() => app.close());
+	// } 
 }
 bootstrap();
