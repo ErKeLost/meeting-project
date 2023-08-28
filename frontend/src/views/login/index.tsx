@@ -1,6 +1,7 @@
 import LoginImg from "@/assets/images/login.jpg";
 import { Button, Checkbox, Divider, Form, Input, message } from "antd";
 import { useLoginStore } from "@/store";
+import { GithubOutlined } from "@ant-design/icons";
 export function Login() {
   const { userInfo } = useLoginStore();
   return (
@@ -86,7 +87,14 @@ const LoginForm: React.FC = () => {
             <Divider>
               <span className="text-14px color-#969696">或者</span>
             </Divider>
-            <Button type="primary" block size="large" htmlType="submit">
+            <Button
+              style={{ background: "#000" }}
+              type="primary"
+              block
+              size="large"
+              htmlType="submit"
+            >
+              <GithubOutlined />
               Github
             </Button>
           </div>
