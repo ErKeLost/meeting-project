@@ -71,6 +71,7 @@ export class UserService {
   }
 
   async register(user: RegisterUserDto) {
+    console.log(`captcha_${user.email}`);
     const captcha = await this.redisService.get(`captcha_${user.email}`);
 
     if (!captcha) {

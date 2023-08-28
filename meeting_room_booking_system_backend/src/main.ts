@@ -18,7 +18,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new InvokeRecordInterceptor());
   app.useGlobalFilters(new UnloginFilter());
   app.useGlobalFilters(new CustomExceptionFilter());
-
+  app.enableCors();
   const config = new DocumentBuilder()
     .setTitle('会议室预订系统')
     .setDescription('api 接口文档')
@@ -31,8 +31,8 @@ async function bootstrap() {
   // await app.listen(configService.get('nest_server_port'));
   await app.listen(3000);
   // if (module.hot) {
-	// 	module.hot.accept();
-	// 	module.hot.dispose(() => app.close());
-	// } 
+  // 	module.hot.accept();
+  // 	module.hot.dispose(() => app.close());
+  // }
 }
 bootstrap();
