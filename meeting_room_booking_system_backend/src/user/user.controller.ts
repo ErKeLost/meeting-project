@@ -200,7 +200,7 @@ export class UserController {
     vo.username = user.username;
     vo.headPic = user.headPic;
     vo.phoneNumber = user.phoneNumber;
-    vo.nickName = user.nickName;
+    vo.nickname = user.nickname;
     vo.createTime = user.createTime;
     vo.isFrozen = user.isFrozen;
 
@@ -284,12 +284,12 @@ export class UserController {
     )
     pageSize: number,
     @Query('username') username: string,
-    @Query('nickName') nickName: string,
+    @Query('nickname') nickname: string,
     @Query('email') email: string,
   ) {
     return await this.userService.findUsers(
       username,
-      nickName,
+      nickname,
       email,
       pageNo,
       pageSize,

@@ -9,7 +9,7 @@ export class RegisterUserDto {
   @IsNotEmpty({
     message: '昵称不能为空',
   })
-  nickName: string;
+  nickname: string;
 
   @IsNotEmpty({
     message: '密码不能为空',

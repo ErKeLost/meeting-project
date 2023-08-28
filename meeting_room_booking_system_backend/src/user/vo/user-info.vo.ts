@@ -3,7 +3,7 @@ export class UserDetailVo {
 
   username: string;
 
-  nickName: string;
+  nickname: string;
 
   email: string;
 

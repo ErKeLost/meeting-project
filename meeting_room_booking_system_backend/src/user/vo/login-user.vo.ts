@@ -3,7 +3,7 @@ interface UserInfo {
 
   username: string;
 
-  nickName: string;
+  nickname: string;
 
   email: string;
 

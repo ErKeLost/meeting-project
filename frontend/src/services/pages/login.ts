@@ -6,3 +6,10 @@ export function login(data: { username: string; password: string }) {
     data,
   });
 }
+
+export function register(data: any) {
+  return request.post({
+    url: "/user/register",
+    data,
+  });
+}

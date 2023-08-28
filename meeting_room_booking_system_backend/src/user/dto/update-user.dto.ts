@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty } from 'class-validator';
 export class UpdateUserDto {
   headPic: string;
 
-  nickName: string;
+  nickname: string;
 
   @IsNotEmpty({
     message: '邮箱不能为空',

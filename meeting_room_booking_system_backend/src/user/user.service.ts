@@ -36,14 +36,14 @@ export class UserService {
     user1.password = md5('111111');
     user1.email = 'xxx@xx.com';
     user1.isAdmin = true;
-    user1.nickName = '张三';
+    user1.nickname = '张三';
     user1.phoneNumber = '13233323333';
 
     const user2 = new User();
     user2.username = 'lisi';
     user2.password = md5('222222');
     user2.email = 'yy@yy.com';
-    user2.nickName = '李四';
+    user2.nickname = '李四';
 
     const role1 = new Role();
     role1.name = '管理员';
@@ -95,7 +95,7 @@ export class UserService {
     newUser.password = md5(user.password);
 
     newUser.email = user.email;
-    newUser.nickName = user.nickName;
+    newUser.nickname = user.nickname;
 
     try {
       await this.userRepository.save(newUser);
@@ -127,7 +127,7 @@ export class UserService {
     vo.userInfo = {
       id: user.id,
       username: user.username,
-      nickName: user.nickName,
+      nickname: user.nickname,
       email: user.email,
       phoneNumber: user.phoneNumber,
       headPic: user.headPic,
@@ -226,8 +226,8 @@ export class UserService {
       id: userId,
     });
 
-    if (updateUserDto.nickName) {
-      foundUser.nickName = updateUserDto.nickName;
+    if (updateUserDto.nickname) {
+      foundUser.nickname = updateUserDto.nickname;
     }
     if (updateUserDto.headPic) {
       foundUser.headPic = updateUserDto.headPic;
@@ -256,7 +256,7 @@ export class UserService {
     const skipCount = (pageNo - 1) * pageSize;
 
     const [users, totalCount] = await this.userRepository.findAndCount({
-      select: ['id', 'username', 'nickName', 'email', 'isFrozen', 'headPic'],
+      select: ['id', 'username', 'nickname', 'email', 'isFrozen', 'headPic'],
       skip: skipCount,
       take: pageSize,
     });
@@ -269,7 +269,7 @@ export class UserService {
 
   async findUsers(
     username: string,
-    nickName: string,
+    nickname: string,
     email: string,
     pageNo: number,
     pageSize: number,
@@ -281,15 +281,15 @@ export class UserService {
     if (username) {
       condition.username = Like(`%${username}%`);
     }
-    if (nickName) {
-      condition.nickName = Like(`%${nickName}%`);
+    if (nickname) {
+      condition.nickname = Like(`%${nickname}%`);
     }
     if (email) {
       condition.email = Like(`%${email}%`);
     }
 
     const [users, totalCount] = await this.userRepository.findAndCount({
-      select: ['id', 'username', 'nickName', 'email', 'isFrozen', 'headPic'],
+      select: ['id', 'username', 'nickname', 'email', 'isFrozen', 'headPic'],
 
       skip: skipCount,
       take: pageSize,

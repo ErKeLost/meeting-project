@@ -1,6 +1,6 @@
 import Request from "./request";
 const request = new Request({
-  baseURL: "http://localhost:3000",
+  baseURL: "/api",
   timeout: 360000,
   interceptors: {
     requestInterceptor: (config: any) => {
