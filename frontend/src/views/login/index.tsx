@@ -1,7 +1,6 @@
 import LoginImg from "@/assets/images/login.jpg";
 import { useState } from "react";
-import styled from "./cpn/index.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./cpn/index.css";
 import {
   Button,
@@ -16,7 +15,7 @@ import {
 import { useLoginStore } from "@/store";
 import { GithubOutlined } from "@ant-design/icons";
 import { testLogin } from "@/services";
-export function Login() {
+function Login() {
   const [isLogin, setIsLogin] = useState(true);
   function handleRegister() {
     setIsLogin(!isLogin);
@@ -30,7 +29,11 @@ export function Login() {
   return (
     <div className="flex h-100vh">
       <div className="w-3/10 bg-gray-300 hidden lg:block">
-        <img className="vertical-top w-full h-full" src={LoginImg} alt="" />
+        <img
+          className="vertical-top object-cover w-full h-full"
+          src={LoginImg}
+          alt=""
+        />
       </div>
       <div className="w-100% flex-center lg:w-7/10">
         <div className="w-400px">
@@ -70,19 +73,15 @@ export function Login() {
 }
 
 const LoginForm: React.FC = () => {
-  const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
-  const { pathname } = useLocation(); // 获取当前url
   const { getUserInfo } = useLoginStore();
   const onFinish = async (values: any) => {
     try {
-      console.log(pathname);
-
       await getUserInfo(values);
-      messageApi.success("登录成功");
+      message.success("登录成功");
       navigate("/dashboard");
-    } catch (error) {
-      messageApi.error(error.message);
+    } catch (error: any) {
+      message.error(error.message);
     }
   };
 
@@ -90,13 +89,12 @@ const LoginForm: React.FC = () => {
     console.log("Failed:", errorInfo);
   };
   async function forgetPassword() {
-    messageApi.info("请联系管理员");
+    message.info("请联系管理员");
     const res = await testLogin();
     console.log(res);
   }
   return (
     <>
-      {contextHolder}
       <Form
         name="basic"
         labelCol={{ span: 8 }}
@@ -168,19 +166,18 @@ const LoginForm: React.FC = () => {
 const RegisterForm: React.FC = ({ isLogin, onLoginToggle }) => {
   const [form] = Form.useForm();
 
-  const [messageApi, contextHolder] = message.useMessage();
   const { userRegister } = useLoginStore();
   const onFinish = async (values: any) => {
     try {
       console.log(values);
 
       await userRegister(values);
-      messageApi.success("注册成功");
+      message.success("注册成功");
       setTimeout(() => {
         onLoginToggle();
       }, 800);
     } catch (error: Error & { message: string }) {
-      messageApi.error(error.message);
+      message.error(error.message);
     }
   };
   const formItemLayout = {
@@ -195,7 +192,6 @@ const RegisterForm: React.FC = ({ isLogin, onLoginToggle }) => {
   };
   return (
     <>
-      {contextHolder}
       <Form
         className={"custom-form"}
         {...formItemLayout}
@@ -339,3 +335,5 @@ const RegisterForm: React.FC = ({ isLogin, onLoginToggle }) => {
     </>
   );
 };
+
+export default Login;

@@ -1,3 +1,5 @@
-export const Dashboard: React.FC = () => {
+const Dashboard: React.FC = () => {
   return 1231456;
 };
+
+export default Dashboard;

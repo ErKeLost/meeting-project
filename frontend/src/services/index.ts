@@ -1,4 +1,6 @@
+import { AxiosInstance } from "axios";
 import Request from "./request";
+
 const request = new Request({
   baseURL: "/api",
   timeout: 360000,
@@ -10,7 +12,7 @@ const request = new Request({
       // 携带token的拦截
       return config;
     },
-    requestInterceptorCatch: (error: any) => {},
+    requestInterceptorCatch: (error: any) => error,
     responseInterceptor: (res: any) => {
       const { config, data } = res;
       return new Promise((resolve) => {
@@ -99,7 +101,7 @@ export const refreshToken = (expiredRequest: () => any) => {
   }
 };
 
-function setAxiosHeader(instance, newAccessToken) {
+function setAxiosHeader(instance: AxiosInstance, newAccessToken: string) {
   // 设置新的 Authorization Header
   instance.defaults.headers.common[
     "Authorization"
