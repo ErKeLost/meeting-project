@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
-import 'uno.css'
-import 'virtual:uno.css'
+import "uno.css";
+import "virtual:uno.css";
 import "./index.css";
 import {
   RouterProvider,
@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { Register } from "@/views/login/cpn/Register";
 import { Login } from "@/views/login";
+import { Dashboard } from "@/views/dashboard";
 import { UpdatePassword } from "@/views/login/cpn/UpdatePassword";
 import { ErrorPage } from "@/components/error";
 
@@ -24,13 +25,17 @@ const routes = [
     element: <Login />,
   },
   {
-    path: "register",
-    element: <Register />,
+    path: "dashboard",
+    element: <Dashboard />,
   },
-  {
-    path: "update_password",
-    element: <UpdatePassword />,
-  },
+  // {
+  //   path: "register",
+  //   element: <Register />,
+  // },
+  // {
+  //   path: "update_password",
+  //   element: <UpdatePassword />,
+  // },
 ];
 const router = createBrowserRouter(routes);
 

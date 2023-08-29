@@ -1,6 +1,7 @@
 import LoginImg from "@/assets/images/login.jpg";
 import { useState } from "react";
 import styled from "./cpn/index.module.css";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./cpn/index.css";
 import {
   Button,
@@ -70,11 +71,16 @@ export function Login() {
 
 const LoginForm: React.FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
+  const { pathname } = useLocation(); // 获取当前url
   const { getUserInfo } = useLoginStore();
   const onFinish = async (values: any) => {
     try {
+      console.log(pathname);
+
       await getUserInfo(values);
       messageApi.success("登录成功");
+      navigate("/dashboard");
     } catch (error) {
       messageApi.error(error.message);
     }
@@ -87,7 +93,6 @@ const LoginForm: React.FC = () => {
     messageApi.info("请联系管理员");
     const res = await testLogin();
     console.log(res);
-    
   }
   return (
     <>
