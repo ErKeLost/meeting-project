@@ -14,8 +14,8 @@ import {
 } from "antd";
 import { useLoginStore } from "@/store";
 import { GithubOutlined } from "@ant-design/icons";
+import { testLogin } from "@/services";
 export function Login() {
-  const { userInfo } = useLoginStore();
   const [isLogin, setIsLogin] = useState(true);
   function handleRegister() {
     setIsLogin(!isLogin);
@@ -83,6 +83,12 @@ const LoginForm: React.FC = () => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+  async function forgetPassword() {
+    messageApi.info("请联系管理员");
+    const res = await testLogin();
+    console.log(res);
+    
+  }
   return (
     <>
       {contextHolder}
@@ -120,7 +126,12 @@ const LoginForm: React.FC = () => {
         >
           <div className="w-full flex justify-between">
             <Checkbox>记住我</Checkbox>
-            <span>忘记密码 ?</span>
+            <span
+              className="color-#1677ff cursor-pointer"
+              onClick={forgetPassword}
+            >
+              忘记密码 ?
+            </span>
           </div>
         </Form.Item>
 

@@ -30,7 +30,8 @@ export const useLoginStore = create((set) => ({
   getUserInfo: async (data) => {
     try {
       const res = await login(data);
-      console.log(res);
+      localStorage.setItem("accessToken", res.data.accessToken);
+      localStorage.setItem("refreshToken", res.data.refreshToken);
       if (res?.code === 201) {
         set({ userInfo: res.data.userInfo });
         return;

@@ -111,8 +111,9 @@ export class UserController {
     return vo;
   }
 
-  @Get('refresh')
-  async refresh(@Query('refreshToken') refreshToken: string) {
+  @Post('refresh')
+  async refresh(@Body('refreshToken') refreshToken: string) {
+    console.log(refreshToken);
     try {
       const data = this.jwtService.verify(refreshToken);
 

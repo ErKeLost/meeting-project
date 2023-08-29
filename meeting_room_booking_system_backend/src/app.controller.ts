@@ -27,6 +27,7 @@ export class AppController {
   }
 
   @Get('bbb')
+  @SetMetadata('require-login', true)
   bbb() {
     return 'bbb';
   }

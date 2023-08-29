@@ -13,3 +13,9 @@ export function register(data: any) {
     data,
   });
 }
+
+export function testLogin() {
+  return request.get({
+    url: "/bbb",
+  })
+}
