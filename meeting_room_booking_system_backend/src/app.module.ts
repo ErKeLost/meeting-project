@@ -11,6 +11,7 @@ import { EmailModule } from './email/email.module';
 import { LoginGuard } from './login.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { PermissionGuard } from './permission.guard';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 @Module({
   imports: [
     JwtModule.registerAsync({
@@ -25,6 +26,7 @@ import { PermissionGuard } from './permission.guard';
       },
       inject: [ConfigService],
     }),
+    CloudinaryModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: 'src/.env',

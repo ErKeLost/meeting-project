@@ -9,6 +9,8 @@ import {
   Post,
   Query,
   UnauthorizedException,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { RegisterUserDto } from './dto/registerUser.dto';
@@ -23,6 +25,7 @@ import { EmailService } from '../email/email.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { generateParseIntPipe } from '../utils/parseInt';
 import { ApiTags } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('用户管理模块')
 @Controller('user')
@@ -215,12 +218,13 @@ export class UserController {
    * @returns 同一个 post 数组酒代表这两个路由使用的同一个 handler
    */
   @Post(['updatePassword', 'admin/updatePassword'])
-  @RequireLogin()
+  // @RequireLogin()
   async updatePassword(
-    @UserInfo('userId') userId: number,
+    // @UserInfo('userId') userId: number,
     @Body() passwordDto: UpdateUserPasswordDto,
   ) {
-    return await this.userService.updatePassword(userId, passwordDto);
+    // return await this.userService.updatePassword(userId, passwordDto);
+    return await this.userService.updatePassword(passwordDto);
   }
 
   @Get('updatePassword/captcha')
@@ -295,5 +299,11 @@ export class UserController {
       pageNo,
       pageSize,
     );
+  }
+
+  @Post('updateImage')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadImage(@UploadedFile() file: Express.Multer.File) {
+    return this.userService.uploadImageToCloudinary(file);
   }
 }

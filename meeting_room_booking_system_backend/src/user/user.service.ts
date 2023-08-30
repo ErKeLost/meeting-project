@@ -14,6 +14,7 @@ import { LoginUserDto } from './dto/loginUser.dto';
 import { LoginUserVo } from './vo/login-user.vo';
 import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 @Injectable()
 export class UserService {
   private logger = new Logger();
@@ -30,6 +31,8 @@ export class UserService {
   @Inject(RedisService)
   private redisService: RedisService;
 
+  @Inject(CloudinaryService)
+  private cloudinary: CloudinaryService;
   async initData() {
     const user1 = new User();
     user1.username = 'zhangsan';
@@ -180,7 +183,7 @@ export class UserService {
     });
     return user;
   }
-  async updatePassword(userId: number, passwordDto: UpdateUserPasswordDto) {
+  async updatePassword(passwordDto: UpdateUserPasswordDto) {
     const captcha = await this.redisService.get(
       `update_password_captcha_${passwordDto.email}`,
     );
@@ -194,8 +197,12 @@ export class UserService {
     }
 
     const foundUser = await this.userRepository.findOneBy({
-      id: userId,
+      // id: userId,
+      email: passwordDto.email,
     });
+    if (foundUser.email !== passwordDto.email) {
+      throw new HttpException('邮箱不正确', HttpStatus.BAD_REQUEST);
+    }
 
     foundUser.password = md5(passwordDto.password);
 
@@ -299,5 +306,10 @@ export class UserService {
       users,
       totalCount,
     };
+  }
+
+  async uploadImageToCloudinary(file: Express.Multer.File) {
+    const res = await this.cloudinary.uploadImage(file);
+    return res;
   }
 }

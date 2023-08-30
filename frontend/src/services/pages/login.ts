@@ -14,8 +14,15 @@ export function register(data: any) {
   });
 }
 
+export function updatePassword(data) {
+  return request.post({
+    url: "/user/updatePassword",
+    data,
+  });
+}
+
 export function testLogin() {
   return request.get({
     url: "/bbb",
-  })
+  });
 }
