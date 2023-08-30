@@ -3,7 +3,7 @@ import { login, register, updatePassword } from "@/services";
 
 export const useLoginStore = create((set) => ({
   userInfo: {},
-  isForgetPassword: true,
+  isForgetPassword: false,
   async getUserInfo(data: unknown) {
     try {
       const res = await login(data);

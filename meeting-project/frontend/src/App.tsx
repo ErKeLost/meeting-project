@@ -1,9 +1,11 @@
 import WrappedRoutes from "@/router";
-
+import { HappyProvider } from "@ant-design/happy-work-theme";
 const App: React.FC = () => {
   return (
     <>
-      <WrappedRoutes />
+      <HappyProvider>
+        <WrappedRoutes />
+      </HappyProvider>
     </>
   );
 };
