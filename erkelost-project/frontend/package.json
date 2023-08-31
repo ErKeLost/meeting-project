@@ -1,0 +1,45 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start:meeting": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/happy-work-theme": "^1.0.0",
+    "@ant-design/icons": "^5.2.5",
+    "antd": "^5.8.4",
+    "axios": "^1.4.0",
+    "clsx": "^1.2.1",
+    "dayjs": "^1.11.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@unocss/preset-attributify": "^0.55.3",
+    "@unocss/preset-uno": "^0.55.3",
+    "@unocss/vite": "^0.55.3",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "lightningcss": "^1.21.5",
+    "prettier": "^2.8.7",
+    "sass": "^1.60.0",
+    "typescript": "^5.0.4",
+    "unplugin-auto-import": "^0.15.3",
+    "unplugin-icons": "^0.16.1",
+    "vite": "^4.4.9",
+    "vite-plugin-pwa": "^0.16.4"
+  }
+}
