@@ -3,6 +3,7 @@
   "pipeline": {
     "build": {},
     "lint": {},
-    "start:meeting": {}
+    "start:meeting": {},
+    "start:custom": {}
   }
 }

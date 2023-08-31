@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:meeting": "turbo run start:meeting"
+    "start:meeting": "turbo run start:meeting",
+    "start:custom": "turbo run start:custom"
   },
   "keywords": [],
   "author": "",
