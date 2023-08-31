@@ -116,7 +116,6 @@ export class UserController {
 
   @Post('refresh')
   async refresh(@Body('refreshToken') refreshToken: string) {
-    console.log(refreshToken);
     try {
       const data = this.jwtService.verify(refreshToken);
 
@@ -202,7 +201,7 @@ export class UserController {
     vo.id = user.id;
     vo.email = user.email;
     vo.username = user.username;
-    vo.headPic = user.headPic;
+    vo.avatar = user.avatar;
     vo.phoneNumber = user.phoneNumber;
     vo.nickname = user.nickname;
     vo.createTime = user.createTime;
@@ -302,8 +301,12 @@ export class UserController {
   }
 
   @Post('updateImage')
+  @RequireLogin()
   @UseInterceptors(FileInterceptor('file'))
-  uploadImage(@UploadedFile() file: Express.Multer.File) {
-    return this.userService.uploadImageToCloudinary(file);
+  uploadImage(
+    @UserInfo('userId') userId: number,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return this.userService.uploadImageToCloudinary(userId, file);
   }
 }

@@ -65,3 +65,8 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.ant-upload-wrapper {
+  display: flex !important;
+  justify-content: center !important;
+}

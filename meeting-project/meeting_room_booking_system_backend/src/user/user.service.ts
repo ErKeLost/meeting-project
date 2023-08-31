@@ -132,7 +132,7 @@ export class UserService {
       nickname: user.nickname,
       email: user.email,
       phoneNumber: user.phoneNumber,
-      headPic: user.headPic,
+      avatar: user.avatar,
       createTime: user.createTime.getTime(),
       isFrozen: user.isFrozen,
       isAdmin: user.isAdmin,
@@ -235,8 +235,8 @@ export class UserService {
     if (updateUserDto.nickname) {
       foundUser.nickname = updateUserDto.nickname;
     }
-    if (updateUserDto.headPic) {
-      foundUser.headPic = updateUserDto.headPic;
+    if (updateUserDto.avatar) {
+      foundUser.avatar = updateUserDto.avatar;
     }
 
     try {
@@ -262,7 +262,7 @@ export class UserService {
     const skipCount = (pageNo - 1) * pageSize;
 
     const [users, totalCount] = await this.userRepository.findAndCount({
-      select: ['id', 'username', 'nickname', 'email', 'isFrozen', 'headPic'],
+      select: ['id', 'username', 'nickname', 'email', 'isFrozen', 'avatar'],
       skip: skipCount,
       take: pageSize,
     });
@@ -295,7 +295,7 @@ export class UserService {
     }
 
     const [users, totalCount] = await this.userRepository.findAndCount({
-      select: ['id', 'username', 'nickname', 'email', 'isFrozen', 'headPic'],
+      select: ['id', 'username', 'nickname', 'email', 'isFrozen', 'avatar'],
 
       skip: skipCount,
       take: pageSize,
@@ -308,8 +308,21 @@ export class UserService {
     };
   }
 
-  async uploadImageToCloudinary(file: Express.Multer.File) {
+  async uploadImageToCloudinary(id: number, file: Express.Multer.File) {
+    const user = await this.userRepository.findOneBy({
+      id,
+    });
+    if (!user) {
+      throw new Error('User not found');
+    }
     const res = await this.cloudinary.uploadImage(file);
-    return res;
+
+    user.avatar = res.url; // Assuming 'url' is the field in the response
+
+    await this.userRepository.save(user);
+    return {
+      avatar: res.url,
+      message: '上传成功',
+    };
   }
 }

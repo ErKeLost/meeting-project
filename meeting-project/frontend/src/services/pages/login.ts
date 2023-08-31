@@ -7,6 +7,12 @@ export function login(data: { username: string; password: string }) {
   });
 }
 
+export function userInfo() {
+  return request.get({
+    url: "/user/info",
+  });
+}
+
 export function register(data: any) {
   return request.post({
     url: "/user/register",
@@ -24,5 +30,12 @@ export function updatePassword(data) {
 export function testLogin() {
   return request.get({
     url: "/bbb",
+  });
+}
+
+export function updateAvatar(data) {
+  return request.post({
+    url: "/user/updateImage",
+    data,
   });
 }

@@ -7,7 +7,7 @@ interface UserInfo {
 
   email: string;
 
-  headPic: string;
+  avatar: string;
 
   phoneNumber: string;
 
